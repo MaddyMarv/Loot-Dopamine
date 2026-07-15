@@ -7,6 +7,15 @@ local localization = {
 	mod_description = {
 		en = "Shows floating combat text when teammates pick up Plasteel or Diamantine. Option to disable base game notifications.",
 	},
+	general = {
+		en = "General",
+	},
+	colors = {
+		en = "Colors",
+	},
+	general_options = {
+		en = "General Options",
+	},
 	disable_base_notification = {
 		en = "Disable Base Game Notification",
 	},

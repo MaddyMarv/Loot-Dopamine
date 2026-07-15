@@ -28,30 +28,39 @@ local data = {
 	options = {
 		widgets = {
 				{
-					setting_id = "disable_base_notification",
-					type = "checkbox",
-					default_value = true,
-					title = "disable_base_notification",
-					tooltip = "disable_base_notification_description",
-				},
-				{
-					setting_id = "show_totals",
-					type = "checkbox",
-					default_value = true,
-					title = "show_totals",
-					tooltip = "show_totals_description",
-				},
-				{
-					setting_id = "enable_shake",
-					type = "checkbox",
-					default_value = true,
-					title = "enable_shake",
-					tooltip = "enable_shake_description",
+					setting_id = "general_options",
+					type = "group",
+					title = "general_options",
+					tab = "general",
+					sub_widgets = {
+						{
+							setting_id = "disable_base_notification",
+							type = "checkbox",
+							default_value = true,
+							title = "disable_base_notification",
+							tooltip = "disable_base_notification_description",
+						},
+						{
+							setting_id = "show_totals",
+							type = "checkbox",
+							default_value = true,
+							title = "show_totals",
+							tooltip = "show_totals_description",
+						},
+						{
+							setting_id = "enable_shake",
+							type = "checkbox",
+							default_value = true,
+							title = "enable_shake",
+							tooltip = "enable_shake_description",
+						},
+					},
 				},
 				{
 					setting_id = "floating_text_options",
 					type = "group",
 					title = "floating_text_options",
+					tab = "general",
 					sub_widgets = {
 						{
 							setting_id = "anim_container_x_offset",
@@ -77,25 +86,26 @@ local data = {
 							title = "anim_transparency",
 							tooltip = "anim_transparency_description",
 						},
-					{
-						setting_id = "label_size",
-						type = "dropdown",
-						default_value = "label_size_default",
-						options = {
-							{ text = "largest", value = "label_size_largest" },
-							{ text = "large", value = "label_size_large" },
-							{ text = "default", value = "label_size_default" },
-							{ text = "small", value = "label_size_small" },
+						{
+							setting_id = "label_size",
+							type = "dropdown",
+							default_value = "label_size_default",
+							options = {
+								{ text = "largest", value = "label_size_largest" },
+								{ text = "large", value = "label_size_large" },
+								{ text = "default", value = "label_size_default" },
+								{ text = "small", value = "label_size_small" },
+							},
+							title = "label_size",
+							tooltip = "label_size_description",
 						},
-						title = "label_size",
-						tooltip = "label_size_description",
-					},
 					},
 				},
 				{
 					setting_id = "color_options",
 					type = "group",
 					title = "color_options",
+					tab = "colors",
 					sub_widgets = {
 						{
 							setting_id = "plasteel_color",
