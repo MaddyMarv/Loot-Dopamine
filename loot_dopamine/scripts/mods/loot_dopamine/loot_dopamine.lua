@@ -200,7 +200,7 @@ end
 apply_settings()
 
 mod:register_hud_element({
-	filename = "loot_dopamine/scripts/mods/loot_dopamine/HudElementLootDopamine",
+	filename = "loot_dopamine/scripts/mods/loot_dopamine/hud/HudElementLootDopamine",
 	class_name = "HudElementLootDopamine",
 	visibility_groups = {
 		"tactical_overlay",
