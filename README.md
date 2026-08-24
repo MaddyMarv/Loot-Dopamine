@@ -3,4 +3,14 @@
 
 Standalone mod that makes grabbing loot more satisfying. When someone picks up crafting materials, you get floating text showing exactly what was picked up. You can customize the colors, text size, and position. You can turn on a screen shake effect when you pick up massive bundles. It also lets you turn off the base game notifications completely.
 
+
+**Options:**
+- Disable Base Game Notification
+- Show Totals Display
+- Enable Shake Effects
+- X/Y Offset
+- Transparency
+- Text Size [Largest, Large, Default, Small]
+- Color Options (Plasteel, Diamantine, Salvage, Scrap, Event Material)
+
 🔗 **Links:** [Source Code](https://github.com/MaddyMarv/Loot-Dopamine) | [Nexus Mods Profile](https://www.nexusmods.com/profile/indicabunny) | [Support Me on Ko-fi](https://ko-fi.com/indicabunny)
