@@ -14,7 +14,7 @@ Standalone mod that makes grabbing loot more satisfying. When someone picks up c
 - Floating Pickup Text
 - Text Duration
 
-**Color Options:**
+**Color Options**
 - Plasteel Text Color
 - Diamantine Text Color
 
