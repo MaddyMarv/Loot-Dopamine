@@ -1,4 +1,4 @@
-Standalone mod that makes grabbing loot more satisfying. When someone picks up crafting materials, you get floating text showing what was picked up. You can customize the colors, text size, and position. You can turn on a screen shake effect when you pick up big materials. It also lets you turn off the base game notifications completely.
+Displays floating combat text and screen shake when picking up crafting materials and ammo.
 
 [b]Options:[/b]
 
