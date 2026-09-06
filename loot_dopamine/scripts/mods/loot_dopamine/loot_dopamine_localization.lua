@@ -5,7 +5,7 @@ local localization = {
 		en = "Loot Dopamine",
 	},
 	mod_description = {
-		en = "Displays floating combat text and screen shake when picking up crafting materials and ammo.",
+		en = "Displays floating combat text when picking up crafting materials. Includes customizable colors, positioning, and a session totals counter.",
 	},
 	general = {
 		en = "General",

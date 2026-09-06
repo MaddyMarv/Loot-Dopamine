@@ -1,4 +1,4 @@
-Displays floating combat text with screen shake when picking up crafting materials and ammo.
+Displays floating combat text when picking up crafting materials. Includes customizable colors, positioning, and a session totals counter.
 
 [b]Options:[/b]
 

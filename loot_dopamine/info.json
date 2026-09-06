@@ -7,7 +7,7 @@
     "funding": {
         "kofi": "https://ko-fi.com/indicabunny"
     },
-    "description": "Displays floating combat text and screen shake when picking up crafting materials and ammo.",
+    "description": "Displays floating combat text when picking up crafting materials. Includes customizable colors, positioning, and a session totals counter.",
     "dependencies": {
         "required": [],
         "self_after": [],
