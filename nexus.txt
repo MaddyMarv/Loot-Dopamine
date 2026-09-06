@@ -13,4 +13,5 @@ Standalone mod that makes grabbing loot more satisfying. When someone picks up c
 [b]Colors[/b]
 - Material Text Colors (Plasteel, Diamantine, Salvage, Scrap, Event Materials)
 
-[b]Links:[/b] [url=https://github.com/MaddyMarv/Loot-Dopamine]Source Code[/url] | [url=https://www.nexusmods.com/profile/indicabunny]Nexus Mods Profile[/url] | [url=https://ko-fi.com/indicabunny]Support Me on Ko-fi[/url]
+[b]Links:[/b]
+[url=https://github.com/MaddyMarv/Loot-Dopamine]Source Code[/url] | [url=https://www.nexusmods.com/profile/indicabunny]Nexus Mods Profile[/url] | [url=https://ko-fi.com/indicabunny]Support Me on Ko-fi[/url]
