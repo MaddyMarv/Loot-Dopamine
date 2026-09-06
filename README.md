@@ -6,18 +6,14 @@ Standalone mod that makes grabbing loot more satisfying. When someone picks up c
 **Options:**
 
 **General**
-- Enable Plasteel Sound
-- Plasteel Sound Effect
-- Enable Diamantine Sound
-- Diamantine Sound Effect
-- Sound Volume
-- Screen Shake on Pickup
-- Shake Strength
-- Floating Pickup Text
-- Text Duration
+- Disable Base Game Notification
+- Show Totals Display
+- Enable Shake Effects
+- Floating Text Position (X/Y Offset)
+- Floating Text Transparency
+- Text Size [Default, Small, Large, Largest]
 
 **Colors**
-- Plasteel Text Color
-- Diamantine Text Color
+- Material Text Colors (Plasteel, Diamantine, Salvage, Scrap, Event Materials)
 
 🔗 **Links:** [Source Code](https://github.com/MaddyMarv/Loot-Dopamine) | [Nexus Mods Profile](https://www.nexusmods.com/profile/indicabunny) | [Support Me on Ko-fi](https://ko-fi.com/indicabunny)
