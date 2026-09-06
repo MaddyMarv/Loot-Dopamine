@@ -5,7 +5,7 @@ local localization = {
 		en = "Loot Dopamine",
 	},
 	mod_description = {
-		en = "Shows floating combat text when teammates pick up Plasteel or Diamantine. Option to disable base game notifications.",
+		en = "Displays floating combat text and screen shake when picking up crafting materials and ammo.",
 	},
 	general = {
 		en = "General",

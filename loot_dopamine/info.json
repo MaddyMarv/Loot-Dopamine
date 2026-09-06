@@ -7,7 +7,7 @@
     "funding": {
         "kofi": "https://ko-fi.com/indicabunny"
     },
-    "description": "Adds floating text and shake effects when you pick up plasteel and diamantine.",
+    "description": "Displays floating combat text and screen shake when picking up crafting materials and ammo.",
     "dependencies": {
         "required": [],
         "self_after": [],
