@@ -4,6 +4,8 @@
 Standalone mod that makes grabbing loot more satisfying. When someone picks up crafting materials, you get floating text showing exactly what was picked up. You can customize the colors, text size, and position. You can turn on a screen shake effect when you pick up massive bundles. It also lets you turn off the base game notifications completely.
 
 **Options:**
+
+**General**
 - Enable Plasteel Sound
 - Plasteel Sound Effect
 - Enable Diamantine Sound
@@ -14,7 +16,7 @@ Standalone mod that makes grabbing loot more satisfying. When someone picks up c
 - Floating Pickup Text
 - Text Duration
 
-**Color Options**
+**Colors**
 - Plasteel Text Color
 - Diamantine Text Color
 
