@@ -1,7 +1,7 @@
 Displays floating combat text when picking up crafting materials. Includes customizable colors, positioning, and a session totals counter.
 
-[b]Options:[/b]
-
+[b]Mod Settings / Commands:[/b]
+[spoiler]
 [b]General[/b]
 - Disable Base Game Notification
 - Show Totals Display
@@ -12,6 +12,7 @@ Displays floating combat text when picking up crafting materials. Includes custo
 
 [b]Colors[/b]
 - Material Text Colors (Plasteel, Diamantine, Salvage, Scrap, Event Materials)
+[/spoiler]
 
 [b]Links:[/b]
 [url=https://github.com/MaddyMarv/Loot-Dopamine]Source Code[/url] | [url=https://www.nexusmods.com/profile/indicabunny]Nexus Mods Profile[/url] | [url=https://ko-fi.com/indicabunny]Support Me on Ko-fi[/url]
