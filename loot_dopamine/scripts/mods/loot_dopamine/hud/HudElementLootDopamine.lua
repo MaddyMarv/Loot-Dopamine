@@ -13,7 +13,10 @@ local function get_active_event_wallet_settings(live_event_manager)
 		return live_event_manager:get_active_event_wallet_settings()
 	end
 	local event_id = live_event_manager.active_event_id and live_event_manager:active_event_id()
-	return event_id and live_event_manager.get_event_wallet_settings and live_event_manager:get_event_wallet_settings(event_id) or nil
+	return event_id
+			and live_event_manager.get_event_wallet_settings
+			and live_event_manager:get_event_wallet_settings(event_id)
+		or nil
 end
 
 local font_size_anim = 140
@@ -138,46 +141,43 @@ local outlineColor = Color.black(255, true)
 local outlineOffset = 2
 
 local function create_animated_text_def()
-	return UIWidget.create_definition(
+	return UIWidget.create_definition({
 		{
-			{
-				value_id = "text",
-				style_id = "text_outline_1",
-				pass_type = "text",
-				value = "",
-				style = table.clone(styleAnimated),
-			},
-			{
-				value_id = "text",
-				style_id = "text_outline_2",
-				pass_type = "text",
-				value = "",
-				style = table.clone(styleAnimated),
-			},
-			{
-				value_id = "text",
-				style_id = "text_outline_3",
-				pass_type = "text",
-				value = "",
-				style = table.clone(styleAnimated),
-			},
-			{
-				value_id = "text",
-				style_id = "text_outline_4",
-				pass_type = "text",
-				value = "",
-				style = table.clone(styleAnimated),
-			},
-			{
-				value_id = "text",
-				style_id = "text",
-				pass_type = "text",
-				value = "",
-				style = styleAnimated,
-			},
+			value_id = "text",
+			style_id = "text_outline_1",
+			pass_type = "text",
+			value = "",
+			style = table.clone(styleAnimated),
 		},
-		"animContainer"
-	)
+		{
+			value_id = "text",
+			style_id = "text_outline_2",
+			pass_type = "text",
+			value = "",
+			style = table.clone(styleAnimated),
+		},
+		{
+			value_id = "text",
+			style_id = "text_outline_3",
+			pass_type = "text",
+			value = "",
+			style = table.clone(styleAnimated),
+		},
+		{
+			value_id = "text",
+			style_id = "text_outline_4",
+			pass_type = "text",
+			value = "",
+			style = table.clone(styleAnimated),
+		},
+		{
+			value_id = "text",
+			style_id = "text",
+			pass_type = "text",
+			value = "",
+			style = styleAnimated,
+		},
+	}, "animContainer")
 end
 
 local widget_definitions = {
@@ -242,7 +242,6 @@ HudElementLootDopamine.init = function(self, parent, draw_layer, start_scale)
 		local current_color = nil
 		local current_text = ""
 
-
 		if material_type == "event_material" then
 			local live_event_manager = Managers.live_event
 			if live_event_manager then
@@ -251,7 +250,10 @@ HudElementLootDopamine.init = function(self, parent, draw_layer, start_scale)
 
 			if wallet_settings then
 				local material_name = "Event Material"
-				if wallet_settings.pickup_localization_by_size and wallet_settings.pickup_localization_by_size[material_size] then
+				if
+					wallet_settings.pickup_localization_by_size
+					and wallet_settings.pickup_localization_by_size[material_size]
+				then
 					material_name = Localize(wallet_settings.pickup_localization_by_size[material_size])
 				elseif wallet_settings.display_name then
 					material_name = Localize(wallet_settings.display_name)
@@ -300,7 +302,6 @@ HudElementLootDopamine.init = function(self, parent, draw_layer, start_scale)
 				self._shake_timer = 0.5
 			end
 		end
-
 
 		if mod:get("show_totals") and material_type ~= "event_material" then
 			self:_show_totals(material_type, amount)
@@ -385,7 +386,7 @@ HudElementLootDopamine._start_popup_animation = function(self, text, color)
 		timer = 0,
 		target_x = math.random(-80, 80),
 		start_y = mod.anim_offset[2],
-		start_x = mod.anim_offset[1]
+		start_x = mod.anim_offset[1],
 	}
 
 	local found = false
@@ -613,4 +614,3 @@ HudElementLootDopamine.update = function(self, dt, t, ui_renderer, render_settin
 end
 
 return HudElementLootDopamine
-

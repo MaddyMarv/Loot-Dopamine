@@ -133,4 +133,3 @@ for _, color_name in ipairs(Color.list) do
 end
 
 return localization
-

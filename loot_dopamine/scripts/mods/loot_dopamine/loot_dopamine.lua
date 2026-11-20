@@ -62,7 +62,10 @@ function EventPickupUtils.spawn_event_pickup(size, position, rotation, optional_
 	end
 
 	if not pickup_name then
-		mod:error("Could not find event pickup name for size '%s'. Either specify pickup_name directly or ensure an active event is running.", size)
+		mod:error(
+			"Could not find event pickup name for size '%s'. Either specify pickup_name directly or ensure an active event is running.",
+			size
+		)
 		return nil
 	end
 
@@ -159,7 +162,7 @@ local function apply_settings()
 		mod.anim_offset = {
 			mod:get("anim_container_x_offset"),
 			mod:get("anim_container_y_offset"),
-			10
+			10,
 		}
 	end
 
@@ -210,7 +213,7 @@ mod:register_hud_element({
 	use_hud_scale = true,
 	validation_function = function(params)
 		return Managers.state.game_mode:game_mode_name() ~= "hub"
-	end
+	end,
 })
 
 mod.on_setting_changed = function()
@@ -218,112 +221,188 @@ mod.on_setting_changed = function()
 end
 
 function mod.on_game_state_changed(status, state_name)
-	if state_name == 'GameplayStateRun' or state_name == "StateGameplay" and status == "enter" then
+	if state_name == "GameplayStateRun" or state_name == "StateGameplay" and status == "enter" then
 		apply_settings()
 	end
 end
 
-mod:hook(CLASS.PickupSystem, "_show_collected_materials_notification",
-function(func, self, peer_id, material_type, material_size)
-	if material_type == "plasteel" or material_type == "diamantine" then
-		local amount = Managers.backend:session_setting("craftingMaterials", material_type, material_size, "value")
+mod:hook(
+	CLASS.PickupSystem,
+	"_show_collected_materials_notification",
+	function(func, self, peer_id, material_type, material_size)
+		if material_type == "plasteel" or material_type == "diamantine" then
+			local amount = Managers.backend:session_setting("craftingMaterials", material_type, material_size, "value")
 
-		if mod.show_floating_text then
-			mod.show_floating_text(material_type, material_size, amount)
-		end
-	end
-
-	if mod:get("disable_base_notification") then
-		return
-	end
-
-	return func(self, peer_id, material_type, material_size)
-end)
-
-
-mod:hook(CLASS.MutatorGameplay, "rpc_player_interacted_mutator_materials",
-function(func, self, channel_id, peer_id, material_type_lookup, material_size_lookup, interaction_type_lookup, material_value)
-	local material_type = NetworkLookup.material_type_lookup[material_type_lookup]
-	local material_size = NetworkLookup.material_size_lookup[material_size_lookup]
-
-	if material_type == "event_material" then
-		if mod.show_event_material_text then
-			local notification_settings = self._side_notification_settings
-			mod.show_event_material_text(material_size, material_value, notification_settings)
+			if mod.show_floating_text then
+				mod.show_floating_text(material_type, material_size, amount)
+			end
 		end
 
 		if mod:get("disable_base_notification") then
 			return
 		end
+
+		return func(self, peer_id, material_type, material_size)
 	end
+)
 
-	return func(self, channel_id, peer_id, material_type_lookup, material_size_lookup, interaction_type_lookup, material_value)
-end)
+mod:hook(
+	CLASS.MutatorGameplay,
+	"rpc_player_interacted_mutator_materials",
+	function(
+		func,
+		self,
+		channel_id,
+		peer_id,
+		material_type_lookup,
+		material_size_lookup,
+		interaction_type_lookup,
+		material_value
+	)
+		local material_type = NetworkLookup.material_type_lookup[material_type_lookup]
+		local material_size = NetworkLookup.material_size_lookup[material_size_lookup]
 
-mod:hook(CLASS.MutatorGameplay, "_show_collected_materials_notification",
-function(func, self, peer_id, material_type, material_size, interaction_type_lookup, material_value)
-	if material_type == "event_material" and mod:get("disable_base_notification") then
-		return
+		if material_type == "event_material" then
+			if mod.show_event_material_text then
+				local notification_settings = self._side_notification_settings
+				mod.show_event_material_text(material_size, material_value, notification_settings)
+			end
+
+			if mod:get("disable_base_notification") then
+				return
+			end
+		end
+
+		return func(
+			self,
+			channel_id,
+			peer_id,
+			material_type_lookup,
+			material_size_lookup,
+			interaction_type_lookup,
+			material_value
+		)
 	end
+)
 
-	return func(self, peer_id, material_type, material_size, interaction_type_lookup, material_value)
-end)
+mod:hook(
+	CLASS.MutatorGameplay,
+	"_show_collected_materials_notification",
+	function(func, self, peer_id, material_type, material_size, interaction_type_lookup, material_value)
+		if material_type == "event_material" and mod:get("disable_base_notification") then
+			return
+		end
 
-
-mod:hook(CLASS.ExpeditionCurrencyHandler, "_show_collected_materials_notification",
-function(func, self, peer_id, amount)
-	if mod.show_floating_text then
-		mod.show_floating_text("expedition_salvage", nil, amount)
+		return func(self, peer_id, material_type, material_size, interaction_type_lookup, material_value)
 	end
+)
 
-	if mod:get("disable_base_notification") then
-		return
+mod:hook(
+	CLASS.ExpeditionCurrencyHandler,
+	"_show_collected_materials_notification",
+	function(func, self, peer_id, amount)
+		if mod.show_floating_text then
+			mod.show_floating_text("expedition_salvage", nil, amount)
+		end
+
+		if mod:get("disable_base_notification") then
+			return
+		end
+
+		return func(self, peer_id, amount)
 	end
+)
 
-	return func(self, peer_id, amount)
-end)
+mod:hook(
+	CLASS.ExpeditionLootHandler,
+	"_show_collected_materials_notification",
+	function(func, self, peer_id, amount, loot_type)
+		if mod.show_floating_text then
+			mod.show_floating_text("expedition_loot", nil, amount)
+		end
 
-mod:hook(CLASS.ExpeditionLootHandler, "_show_collected_materials_notification",
-function(func, self, peer_id, amount, loot_type)
-	if mod.show_floating_text then
-		mod.show_floating_text("expedition_loot", nil, amount)
+		if mod:get("disable_base_notification") then
+			return
+		end
+
+		return func(self, peer_id, amount, loot_type)
 	end
+)
 
-	if mod:get("disable_base_notification") then
-		return
+mod:hook(
+	CLASS.HudElementTacticalOverlay,
+	"init",
+	function(func, self, parent, draw_layer, start_scale, optional_context)
+		func(self, parent, draw_layer, start_scale, optional_context)
+
+		local UIWidget = require("scripts/managers/ui/ui_widget")
+
+		local function generate_currency_passes(currency_texture)
+			return {
+				{ pass_type = "rect", style_id = "reward_background", style = { color = { 200, 0, 0, 0 } } },
+				{
+					pass_type = "texture",
+					style_id = "reward_gradient",
+					value = "content/ui/materials/gradients/gradient_vertical",
+					style = { color = { 32, 169, 211, 158 }, offset = { 0, 0, 1 } },
+				},
+				{
+					pass_type = "texture",
+					style_id = "reward_frame",
+					value = "content/ui/materials/frames/frame_tile_2px",
+					style = { scale_to_material = true, color = Color.terminal_frame(255, true), offset = { 0, 0, 2 } },
+				},
+				{
+					pass_type = "texture",
+					style_id = "reward_icon",
+					value = currency_texture,
+					style = {
+						horizontal_alignment = "right",
+						vertical_alignment = "center",
+						size = { 28, 20 },
+						offset = { 0, 0, 3 },
+					},
+				},
+				{
+					pass_type = "text",
+					style_id = "reward_text",
+					value = "0",
+					value_id = "amount_id",
+					style = {
+						font_size = 20,
+						font_type = "proxima_nova_bold",
+						text_horizontal_alignment = "right",
+						text_vertical_alignment = "center",
+						text_color = Color.terminal_text_body(255, true),
+						offset = { -28, 0, 3 },
+					},
+				},
+			}
+		end
+
+		local salvage_def = UIWidget.create_definition(
+			generate_currency_passes("content/ui/materials/icons/currencies/salvage_small"),
+			"crafting_pickup_panel",
+			nil,
+			{ 110, 33 }
+		)
+		local scrap_def = UIWidget.create_definition(
+			generate_currency_passes("content/ui/materials/icons/currencies/tech_remnant_small"),
+			"crafting_pickup_panel",
+			nil,
+			{ 110, 33 }
+		)
+
+		local salvage_widget = self:_create_widget("mod_salvage_info", salvage_def)
+		local scrap_widget = self:_create_widget("mod_scrap_info", scrap_def)
+
+		salvage_widget.offset = { 0, 50, 0 }
+		scrap_widget.offset = { 130, 50, 0 }
+
+		self._left_panel_widgets[#self._left_panel_widgets + 1] = salvage_widget
+		self._left_panel_widgets[#self._left_panel_widgets + 1] = scrap_widget
 	end
-
-	return func(self, peer_id, amount, loot_type)
-end)
-
-
-mod:hook(CLASS.HudElementTacticalOverlay, "init", function(func, self, parent, draw_layer, start_scale, optional_context)
-	func(self, parent, draw_layer, start_scale, optional_context)
-
-	local UIWidget = require("scripts/managers/ui/ui_widget")
-
-	local function generate_currency_passes(currency_texture)
-		return {
-			{ pass_type = "rect", style_id = "reward_background", style = { color = { 200, 0, 0, 0 } } },
-			{ pass_type = "texture", style_id = "reward_gradient", value = "content/ui/materials/gradients/gradient_vertical", style = { color = { 32, 169, 211, 158 }, offset = { 0, 0, 1 } } },
-			{ pass_type = "texture", style_id = "reward_frame", value = "content/ui/materials/frames/frame_tile_2px", style = { scale_to_material = true, color = Color.terminal_frame(255, true), offset = { 0, 0, 2 } } },
-			{ pass_type = "texture", style_id = "reward_icon", value = currency_texture, style = { horizontal_alignment = "right", vertical_alignment = "center", size = { 28, 20 }, offset = { 0, 0, 3 } } },
-			{ pass_type = "text", style_id = "reward_text", value = "0", value_id = "amount_id", style = { font_size = 20, font_type = "proxima_nova_bold", text_horizontal_alignment = "right", text_vertical_alignment = "center", text_color = Color.terminal_text_body(255, true), offset = { -28, 0, 3 } } },
-		}
-	end
-
-	local salvage_def = UIWidget.create_definition(generate_currency_passes("content/ui/materials/icons/currencies/salvage_small"), "crafting_pickup_panel", nil, { 110, 33 })
-	local scrap_def = UIWidget.create_definition(generate_currency_passes("content/ui/materials/icons/currencies/tech_remnant_small"), "crafting_pickup_panel", nil, { 110, 33 })
-
-	local salvage_widget = self:_create_widget("mod_salvage_info", salvage_def)
-	local scrap_widget = self:_create_widget("mod_scrap_info", scrap_def)
-
-	salvage_widget.offset = { 0, 50, 0 }
-	scrap_widget.offset = { 130, 50, 0 }
-
-	self._left_panel_widgets[#self._left_panel_widgets + 1] = salvage_widget
-	self._left_panel_widgets[#self._left_panel_widgets + 1] = scrap_widget
-end)
+)
 
 local TextUtils = require("scripts/utilities/ui/text")
 
@@ -334,14 +413,18 @@ mod:hook(CLASS.HudElementTacticalOverlay, "_update_materials_collected", functio
 	local salvage_widget = self._widgets_by_name.mod_salvage_info
 	local scrap_widget = self._widgets_by_name.mod_scrap_info
 
-	if not salvage_widget or not scrap_widget then return end
+	if not salvage_widget or not scrap_widget then
+		return
+	end
 
 	local is_expedition = self._game_mode_name == "expedition"
 
 	salvage_widget.visible = show_details and is_expedition
 	scrap_widget.visible = show_details and is_expedition
 
-	if not is_expedition then return end
+	if not is_expedition then
+		return
+	end
 
 	local salvage_total = 0
 	local scrap_total = 0
