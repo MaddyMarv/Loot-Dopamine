@@ -20,7 +20,6 @@ local function get_active_event_wallet_settings(live_event_manager)
 end
 
 local font_size_anim = 140
-local size = { 60, 40 }
 local sizeAnim = { 1000, font_size_anim }
 local currency_info_size = { 110, 33 }
 
@@ -137,7 +136,6 @@ local styleAnimated = {
 	offset = { 0, 0, 0 },
 }
 
-local outlineColor = Color.black(255, true)
 local outlineOffset = 2
 
 local function create_animated_text_def()
@@ -239,8 +237,8 @@ HudElementLootDopamine.init = function(self, parent, draw_layer, start_scale)
 	mod.show_floating_text = function(material_type, material_size, amount)
 		local wallet_settings = WalletSettings[material_type]
 
-		local current_color = nil
-		local current_text = ""
+		local current_color
+		local current_text
 
 		if material_type == "event_material" then
 			local live_event_manager = Managers.live_event
@@ -352,7 +350,6 @@ HudElementLootDopamine.init = function(self, parent, draw_layer, start_scale)
 
 	mod.apply_widget_settings = function()
 		local font_size = mod.label_size
-		size[2] = font_size
 		local widgets = self._widgets_by_name
 		local transparency = mod:get("anim_transparency") or 255
 		local current_outline_color = Color.black(transparency, true)
@@ -558,9 +555,6 @@ HudElementLootDopamine._update_totals_animation = function(self, dt)
 	else
 		self.totals_alpha = 1
 	end
-
-	local base_y = 50
-	local anim_y = base_y - math.sin(t * math.pi) * 20
 
 	plasteel_widget.alpha_multiplier = self.totals_alpha
 	diamantine_widget.alpha_multiplier = self.totals_alpha
