@@ -1,7 +1,7 @@
 local InputUtils = require("scripts/managers/input/input_utils")
 
 local localization = {
-	mod_title = {
+	mod_name = {
 		en = "Loot Dopamine",
 	},
 	mod_description = {

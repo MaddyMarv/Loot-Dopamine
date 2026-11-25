@@ -10,12 +10,10 @@ Displays floating combat text when picking up crafting materials. Includes custo
 - Disable Base Game Notification
 - Show Totals Display
 - Enable Shake Effects
-- Floating Text Position (X/Y Offset)
-- Floating Text Transparency
-- Text Size [Default, Small, Large, Largest]
+- Floating Text Options (X/Y Offset, Transparency, Text Size [Largest, Large, Default, Small])
 
 **Colors**
-- Material Text Colors (Plasteel, Diamantine, Salvage, Scrap, Event Materials)
+- Material Text Colors (Plasteel, Diamantine, Salvage, Scrap, Event Material)
 </details>
 
 🔗 **Links:** [Source Code](https://github.com/MaddyMarv/Loot-Dopamine) | [Nexus Mods Profile](https://www.nexusmods.com/profile/indicabunny) | [Support Me on Ko-fi](https://ko-fi.com/indicabunny)

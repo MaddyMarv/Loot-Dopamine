@@ -18,7 +18,7 @@ local function get_color_options()
 end
 
 local data = {
-	name = mod:localize("mod_title"),
+	name = mod:localize("mod_name"),
 	description = mod:localize("mod_description"),
 	is_togglable = true,
 	allow_rehooking = true,
@@ -28,7 +28,7 @@ local data = {
 				setting_id = "general_options",
 				type = "group",
 				title = "general_options",
-				tab = "general",
+				tab = mod:localize("general"),
 				sub_widgets = {
 					{
 						setting_id = "disable_base_notification",
@@ -57,7 +57,7 @@ local data = {
 				setting_id = "floating_text_options",
 				type = "group",
 				title = "floating_text_options",
-				tab = "general",
+				tab = mod:localize("general"),
 				sub_widgets = {
 					{
 						setting_id = "anim_container_x_offset",
@@ -102,7 +102,7 @@ local data = {
 				setting_id = "color_options",
 				type = "group",
 				title = "color_options",
-				tab = "colors",
+				tab = mod:localize("colors"),
 				sub_widgets = {
 					{
 						setting_id = "plasteel_color",
